@@ -128,10 +128,10 @@ class Net(nn.Module):
     x = F.log_softmax(self.fc3(x),dim = 1)
     return x
  
-model = models.mobilenet_v2(pretrained=True)
+model = models.alexnet(pretrained=True)
 #num_ftrs = model.fc.in_features
 #model.fc = nn.Linear(num_ftrs, 14)
-#model.classifier[6] = nn.Linear(4096,14)
+model.classifier[6] = nn.Linear(4096,14)
 model = model.to('cuda')
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr=0.0001)
